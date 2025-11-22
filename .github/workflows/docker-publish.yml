@@ -24,10 +24,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image
+        working-directory: notes-app
         run: |
           docker build -t ghcr.io/${{ github.repository_owner }}/notes-app:latest .
 
       - name: Push image
+        working-directory: notes-app
         run: |
           docker push ghcr.io/${{ github.repository_owner }}/notes-app:latest
-
