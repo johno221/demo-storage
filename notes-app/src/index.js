@@ -34,7 +34,7 @@ app.get("/notes", async (req, res) => {
   }
 });
 
-// Vytvorenie poznámky
+// test
 app.post("/notes", async (req, res) => {
   try {
     const { text } = req.body;
