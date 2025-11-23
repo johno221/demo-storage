@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notes-app
+  namespace: demo-storage
+spec:
+  selector:
+    app: notes-app
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-app
+  namespace: demo-storage
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notes-app
+  template:
+    metadata:
+      labels:
+        app: notes-app
+    spec:
+      containers:
+        - name: notes-app
+          image: ghcr.io/johno221/notes-app:latest
+          imagePullPolicy: Always
+          env:
+            - name: DATABASE_URL
+              value: "postgres://demo:demo123@postgres.demo-storage.svc.cluster.local:5432/demo"
+          ports:
+            - containerPort: 8080
