@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notes-app
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: notes-app
+spec:
+  selector:
+    app: notes-app
+  ports:
+    - port: {{ .Values.servicePort | default 8080 }}
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP

@@ -1,0 +1,8 @@
+image: postgres:16
+db: demo
+user: demo
+password: demo123
+
+storage:
+  hostPath: /home/jbl/demo-storage/pgdata
+  size: 2Gi

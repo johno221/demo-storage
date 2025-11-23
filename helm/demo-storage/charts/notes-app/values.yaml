@@ -1,0 +1,4 @@
+image: ghcr.io/johno221/notes-app:latest
+replicas: 2
+servicePort: 8080
+databaseUrl: "postgres://demo:demo123@postgres:5432/demo"

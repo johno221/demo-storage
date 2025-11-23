@@ -1,0 +1,14 @@
+postgres:
+  image: postgres:16
+  db: demo
+  user: demo
+  password: demo123
+  storage:
+    hostPath: /home/jbl/demo-storage/pgdata
+    size: 2Gi
+
+notes-app:
+  image: ghcr.io/johno221/notes-app:latest
+  replicas: 2
+  servicePort: 8080
+  databaseUrl: "postgres://demo:demo123@postgres:5432/demo"
